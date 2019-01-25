@@ -42,11 +42,11 @@ class Instructor extends Person {
     console.log(`${student.name} receives a perfect score on ${subject}`)
   }
   adjustGrade(student) {
-    // add or subtract random num from 1 to 10
+    // add or subtract random num from 1 to 5
     if (Math.random() < .5) {
-      student.grade += Math.floor(Math.random() * 10) + 1
+      student.grade += Math.floor(Math.random() * 5) + 1
     } else {
-      student.grade -= Math.floor(Math.random() * 10) + 1
+      student.grade -= Math.floor(Math.random() * 5) + 1
     }
   }
 
@@ -94,7 +94,16 @@ class Student extends Person {
 
   sprintChallenge(subject) {
     console.log(`${this.name} has begun sprint challenge on ${subject}`);
-    
+  }
+
+  // stretch instructions vague on how they want it to work.
+  graduate() {
+    if (this.grade >= 70) {
+      console.log(`${this.name} has graduated`);      
+    } else {
+      console.log(`${this.name} is not ready`);      
+      
+    }
   }
 }
 
@@ -105,7 +114,7 @@ let me = new Student({
   gender: 'male',
   previousBackground: 'tech support',
   className: 'webpt4',
-  favSubjects: ['js', 'git'],
+  favSubjects: ['js', 'git', 'github', 'terminal'],
   grade: 77
 })
 
@@ -117,7 +126,7 @@ let joe = new Student({
   previousBackground: 'sales',
   className: 'webpt2',
   favSubjects: ['html', 'css'],
-  grade: 70
+  grade: 67
 })
 
 me.speak();
@@ -161,5 +170,8 @@ let sally = new ProjectManager({
 
 sally.standUp("webpt4_sally")
 sally.demo("python")
-sally.adjustGrade(joe)
-console.log(joe.grade);
+
+while (joe.grade < 70) {
+  bob.adjustGrade(joe)
+  joe.graduate();
+}
